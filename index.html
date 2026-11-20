@@ -1,1 +1,327 @@
-あああああああああああああ
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>塩澤悠樹 | フロントエンドエンジニア</title>
+  <meta name="description" content="フロントエンドエンジニア / コーダー 塩澤悠樹のポートフォリオ。Web制作実務12年以上。動く楽しさをコードで表現します。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="cursor" aria-hidden="true"></div>
+
+  <div class="loader" aria-hidden="true">
+    <p class="loader__kana">SHIOZAWA YUKI</p>
+    <p class="loader__count"><span>0</span></p>
+  </div>
+
+  <header class="header">
+    <a class="header__logo" href="#top">塩澤悠樹</a>
+    <nav class="header__nav" aria-label="ページ内">
+      <a class="header__link" href="#strength">強み</a>
+      <a class="header__link" href="#works">実績</a>
+      <a class="header__link" href="#archive">その他</a>
+      <a class="header__link" href="#personal">個人制作</a>
+      <a class="header__link" href="#contact">連絡</a>
+    </nav>
+    <button class="header__menu" type="button" aria-expanded="false" aria-label="メニュー">
+      <span class="header__bar"></span><span class="header__bar"></span>
+    </button>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <p class="hero__index">Portfolio</p>
+      <h1>
+        <span class="hero__line"><span>塩澤悠樹</span></span>
+      </h1>
+      <div class="hero__bottom">
+        <div>
+          <p class="hero__role">フロントエンドエンジニア / コーダー</p>
+          <p class="hero__lead">“動く楽しさ”をコードで表現する実装者。<br>細部の動きまで丁寧に作り込み、体験を豊かにします。</p>
+          <div class="marquee" aria-hidden="true">
+            <div class="marquee__track">
+              <span class="marquee__item">HTML</span><span class="marquee__item">CSS / SCSS</span><span class="marquee__item">JavaScript</span><span class="marquee__item">jQuery</span><span class="marquee__item">WordPress</span><span class="marquee__item">Figma</span><span class="marquee__item">EJS</span><span class="marquee__item">BEM</span><span class="marquee__item">LP</span><span class="marquee__item">コーポレート</span>
+            </div>
+          </div>
+        </div>
+        <p class="hero__years"><span class="hero__num" data-count="12">0</span><span class="hero__label">年以上の<br>Web制作実務</span></p>
+      </div>
+      <a class="hero__scroll" href="#strength">Scroll</a>
+    </section>
+
+    <section class="section" id="strength">
+      <div class="section__head">
+        <p class="eyebrow">Strength</p>
+        <h2>私の強み</h2>
+      </div>
+      <div class="bento">
+        <article class="card card--wide">
+          <p class="card__no">01</p>
+          <h3>教育系 UI/UX に特化したフロントエンド実装</h3>
+          <p>小学生向けの「触って楽しい」UI とアニメーション設計が中心です。操作の手応えを残しながら、学習や育成が続く体験に落とし込みます。</p>
+        </article>
+        <article class="card">
+          <p class="card__no">02</p>
+          <h3>安定した実装</h3>
+          <p>HTML / CSS / jQuery / JavaScript を、再現性と保守性を優先して構造化します。</p>
+        </article>
+        <article class="card">
+          <p class="card__no">03</p>
+          <h3>REST API の通信制御</h3>
+          <p>GET / POST / PUT と、KVS 未登録時の自動 POST などの例外処理まで含めた堅牢な通信設計。</p>
+        </article>
+        <article class="card">
+          <p class="card__no">04</p>
+          <h3>アニメーション設計</h3>
+          <p>ゲーム的なリアクションと、描画負荷を見ながら整える動き。押した瞬間に返る小さな反応を大切にしています。</p>
+        </article>
+        <article class="card">
+          <p class="card__no">05</p>
+          <h3>WordPress</h3>
+          <p>カスタム投稿と管理画面の最適化。ニュースの統合表示や、入力負荷を下げる運用設計。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="works">
+      <div class="section__head">
+        <p class="eyebrow">Selected works</p>
+        <h2>主な実績</h2>
+      </div>
+      <div class="works">
+        <article class="work work--open">
+          <button class="work__toggle" type="button">
+            <span class="work__no">01</span>
+            <span class="work__name">Harmost</span>
+            <span class="work__kind">LP</span>
+            <span class="work__plus" aria-hidden="true"></span>
+          </button>
+          <div class="work__body">
+            <div class="work__inner">
+              <p class="work__client">ソーラーカーポート Harmost 特設サイト</p>
+              <p>住宅用ソーラーカーポート「Harmost」の特設サイトで UI 実装を担当。Figma からのコーディング、レスポンシブ、スクロールアニメーション、スライダーの動きを実装しました。</p>
+              <p>スクロールに合わせて要素が自然に現れるようにし、情報の流れが直感的に伝わる構成にしています。CSS は BEM で、コンポーネント単位で追いやすい構造にしました。</p>
+              <ul class="work__tags">
+                <li>HTML (EJS)</li><li>CSS (BEM)</li><li>jQuery</li><li>Figma</li>
+              </ul>
+              <a class="text-link" href="https://pd.nextenergy.jp/special/harmost/" target="_blank" rel="noopener">サイトを見る</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="work">
+          <button class="work__toggle" type="button">
+            <span class="work__no">02</span>
+            <span class="work__name">Honda Magazine<br>プレリュードコラム</span>
+            <span class="work__kind">LP</span>
+            <span class="work__plus" aria-hidden="true"></span>
+          </button>
+          <div class="work__body">
+            <div class="work__inner">
+              <p class="work__client">プレリュードオーナーの生声から探る e:HEV と Honda S+ Shift</p>
+              <p>Honda Magazine のコラムページで、Figma をもとにしたコーディング、レスポンシブ、アニメーションを担当しました。車が走っているように感じられる動きも設計しています。</p>
+              <p>文字や画像の出し方でスピーディさを出し、スクロールとともに情報が流れるようにしました。</p>
+              <ul class="work__tags">
+                <li>HTML (EJS)</li><li>CSS (BEM)</li><li>jQuery</li><li>Figma</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="work">
+          <button class="work__toggle" type="button">
+            <span class="work__no">03</span>
+            <span class="work__name">BELLE HOUSING</span>
+            <span class="work__kind">Corporate / Recruit</span>
+            <span class="work__plus" aria-hidden="true"></span>
+          </button>
+          <div class="work__body">
+            <div class="work__inner">
+              <p class="work__client">ヴェル・ハウジング株式会社 コーポレート／採用サイト</p>
+              <p>住宅事業の企業サイトと採用ページの UI 実装を担当。XD からの実装、レスポンシブ、スクロールアニメーション、CSS アニメーション、WordPress のテーマ調整を行いました。</p>
+              <p>ニュース投稿をカテゴリ分けし、コーポレート側にもリクルートのニュースが出る仕組みにしています。CSS は BEM です。</p>
+              <ul class="work__tags">
+                <li>HTML (EJS)</li><li>CSS (BEM)</li><li>jQuery</li><li>WordPress</li><li>XD</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="work">
+          <button class="work__toggle" type="button">
+            <span class="work__no">04</span>
+            <span class="work__name">学習問題サイト</span>
+            <span class="work__kind">非公開 / 教育</span>
+            <span class="work__plus" aria-hidden="true"></span>
+          </button>
+          <div class="work__body">
+            <div class="work__inner">
+              <p class="work__client">小学生向け会員制学習サイト</p>
+              <p>学年に応じた問題ページとナビゲーションを実装し、子どもが直感的に操作できる構成にしました。学習進捗の取得と保存は REST API（GET / POST / PUT）で制御しています。</p>
+              <p>キャラクターのアニメーションと、操作のたびに返る小さなリアクションで、学習が続く体験を目指しました。KVS 未登録時の自動 POST など、エラーコードに応じた例外処理も実装しています。</p>
+              <ul class="work__tags">
+                <li>HTML (EJS)</li><li>CSS (BEM)</li><li>jQuery</li><li>REST API</li><li>XD</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="work">
+          <button class="work__toggle" type="button">
+            <span class="work__no">05</span>
+            <span class="work__name">キャラクター育成</span>
+            <span class="work__kind">非公開 / 教育</span>
+            <span class="work__plus" aria-hidden="true"></span>
+          </button>
+          <div class="work__body">
+            <div class="work__inner">
+              <p class="work__client">小学生向け会員制サイト</p>
+              <p>ボタン操作を中心に、キャラが成長したり反応したりする UI を実装。育成ゲームや RPG の戦闘を意識したアニメーションで、「遊びの感覚で続けられる」体験にしています。</p>
+              <p>成長データの取得・保存も REST API（GET / POST / PUT）で担当し、未登録時の自動 POST を含む例外処理を入れています。</p>
+              <ul class="work__tags">
+                <li>HTML (EJS)</li><li>CSS (BEM)</li><li>jQuery</li><li>REST API</li><li>XD</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="work">
+          <button class="work__toggle" type="button">
+            <span class="work__no">06</span>
+            <span class="work__name">歩くツール体験</span>
+            <span class="work__kind">非公開 / 教育</span>
+            <span class="work__plus" aria-hidden="true"></span>
+          </button>
+          <div class="work__body">
+            <div class="work__inner">
+              <p class="work__client">小学生向けのツールお試しサイト</p>
+              <p>歩くボタンを押すと人物がアニメーションし、背景がスクロールして歩いているように見える演出を実装しました。何度か押すとイベントが起きてアイテムを取得でき、10秒間隔で後ろを車が通ります。</p>
+              <p>実際に歩いているのが直感的に伝わるよう、動きのタイミングを調整しています。AI 支援ツールも使いながら実装を進めました。</p>
+              <ul class="work__tags">
+                <li>HTML (EJS)</li><li>CSS (BEM)</li><li>jQuery</li><li>XD</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="archive">
+      <div class="section__head">
+        <p class="eyebrow">Archive</p>
+        <h2>その他の制作事例</h2>
+      </div>
+      <ul class="archive">
+        <li>
+          <div>
+            <p class="archive__name">防眩仕様の太陽光電池モジュール「墨黒（BOKKOKU）」</p>
+            <p class="archive__meta">ページコーディング　HTML (EJS) / CSS (SCSS) / jQuery</p>
+          </div>
+          <a href="https://pd.nextenergy.jp/special/bokkoku/" target="_blank" rel="noopener">見る</a>
+        </li>
+        <li>
+          <div>
+            <p class="archive__name">Honda Magazine N-BOX コラム</p>
+            <p class="archive__meta">開発責任者が想う、N-BOX シリーズ拡がる理由。HTML (EJS) / CSS (SCSS) / jQuery / Figma</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <p class="archive__name">Honda Magazine FIT コラム</p>
+            <p class="archive__meta">一人ひとりの FIT 25年。HTML (EJS) / CSS (SCSS) / jQuery / Figma</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <p class="archive__name">無呼吸直そう.com 特設ページ</p>
+            <p class="archive__meta">掲載終了。HTML (EJS) / CSS (SCSS) / jQuery</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <p class="archive__name">EPARK クリニック・病院</p>
+            <p class="archive__meta">ページコーディング。HTML (Pug) / CSS (SCSS) / jQuery</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <p class="archive__name">くどう動物病院</p>
+            <p class="archive__meta">ページコーディング。HTML / CSS / Jimdo</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <p class="archive__name">デザインレンタカー OKINAWA</p>
+            <p class="archive__meta">ページコーディング。HTML / CSS / Jimdo</p>
+          </div>
+        </li>
+      </ul>
+      <p class="archive__note">ほかにも、小学生向け会員制学習サイト（非公開）を多数コーディングしています。設計思想と、再現性・保守性を共通の方針にしています。</p>
+    </section>
+
+    <section class="section personal" id="personal">
+      <div class="section__head">
+        <p class="eyebrow">Personal</p>
+        <h2>個人制作</h2>
+      </div>
+      <div class="personal__grid">
+        <div>
+          <p class="personal__kicker">YouTube</p>
+          <h3>切り抜き動画の演出・UI デザイン</h3>
+          <p>配信者との交流をきっかけに、切り抜き動画の編集と演出を個人で担当しました。AI 生成キャラクターをワンポイントに置き、テンポに合わせて表情とポーズを変えています。</p>
+          <p>情報の見やすさ、雰囲気、視線誘導を意識したレイアウトです。キャラクターは演出のアクセントとして使っています。</p>
+          <a class="text-link" href="https://www.youtube.com/@%E7%88%B6%E3%81%A8%E5%A8%98%E3%81%AE%E5%88%87%E3%82%8A%E6%8A%9C%E3%81%8D%E3%83%81%E3%83%A3%E3%83%B3%E3%83%8D%E3%83%AB" target="_blank" rel="noopener">チャンネルを見る</a>
+        </div>
+        <div class="personal__panel" aria-hidden="true">
+          <span>PLAY</span>
+          <span>CUT</span>
+          <span>UI</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <div class="contact__grid">
+        <div>
+          <p class="eyebrow">Contact</p>
+          <h2>実装で、<br>体験を動かす。</h2>
+          <p class="contact__lead">HTML / CSS(SCSS) / JavaScript(jQuery) / WordPress / Figma からの実装。LP とコーポレートサイトを中心に制作しています。</p>
+        </div>
+        <form class="contact__form" action="https://formspree.io/f/mljblqzw" method="POST" novalidate>
+          <label>お名前
+            <input type="text" name="name" autocomplete="name" required>
+          </label>
+          <label>メールアドレス
+            <input type="email" name="email" autocomplete="email" required>
+          </label>
+          <label>ご用件
+            <select name="topic">
+              <option>お仕事のご相談</option>
+              <option>実装のご依頼</option>
+              <option>その他</option>
+            </select>
+          </label>
+          <label>メッセージ
+            <textarea name="message" rows="5" required></textarea>
+          </label>
+          <button type="submit">送信する</button>
+          <p class="contact__status" role="status"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>塩澤 悠樹</p>
+    <p>Frontend Engineer / Coder</p>
+  </footer>
+
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
