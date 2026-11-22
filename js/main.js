@@ -2,24 +2,29 @@ $(function () {
   var $body = $("body");
   var $loader = $(".loader");
   var $count = $(".loader__count span");
+  var $bar = $(".loader__bar");
   var n = 0;
 
+  function paintLoader(value) {
+    $count.text(("00" + value).slice(-3));
+    $bar.css("transform", "scaleX(" + value / 100 + ")");
+  }
+
   var timer = setInterval(function () {
-    n += Math.ceil(Math.random() * 7);
-    if (n >= 100) {
-      n = 100;
-      clearInterval(timer);
-      $count.text(n);
+    n = Math.min(100, n + (n < 74 ? Math.ceil(Math.random() * 5) : 1));
+    paintLoader(n);
+    if (n < 100) return;
+    clearInterval(timer);
+    setTimeout(function () {
+      $loader.addClass("loader--done");
+      $body.addClass("page--ready");
+      spinReel();
+      showText($(".hero .tx, .hero__scroll.tx"));
       setTimeout(function () {
-        $loader.addClass("loader--done");
-        $body.addClass("page--ready");
-        spinReel();
-        showText($(".hero .tx, .hero__scroll.tx"));
-      }, 250);
-    } else {
-      $count.text(n);
-    }
-  }, 30);
+        $body.removeClass("page--lock");
+      }, 900);
+    }, 280);
+  }, 36);
 
   function spinReel() {
     var $num = $(".hero__num");
@@ -194,9 +199,9 @@ $(function () {
     ".hero__index, .hero__role, .hero__lead, .hero__label, .hero__scroll," +
     ".section__head .eyebrow, .section__head h2," +
     ".card .card__no, .card h3, .card > p," +
-    ".work__no, .work__name, .work__kind, .work__client, .work__inner > p, .work__tags li, .work__inner .text-link," +
-    ".archive__name, .archive__meta, .archive a, .archive__note," +
-    ".personal__kicker, .personal__grid h3, .personal__grid > div > p, .personal__grid .text-link, .personal__panel span," +
+    ".work__no, .work__name, .work__kind, .work__client, .work__inner p, .work__tags li, .work__inner .text-link," +
+    ".archive__name, .archive__meta, .archive a, .archive__end, .archive__note," +
+    ".personal__kicker, .personal__grid h3, .personal__grid > div > p, .personal__grid .text-link," +
     ".contact .eyebrow, .contact h2, .contact__lead, .contact__link," +
     ".footer p"
   ).each(function () {
@@ -226,19 +231,101 @@ $(function () {
       var r = this.getBoundingClientRect();
       if (r.height > 0 && r.top < $(window).height() * 0.9 && r.bottom > 0) $(this).addClass("tx--on");
     });
+
+    revealThumbs();
   }).trigger("scroll");
+
+  function revealThumbs() {
+    $(".work--open .work__thumb").not(".work__thumb--in").each(function () {
+      var r = this.getBoundingClientRect();
+      if (r.height > 0 && r.top < $(window).height() * 0.92 && r.bottom > 0) {
+        $(this).addClass("work__thumb--in");
+      }
+    });
+  }
 
   $(".work__toggle").on("click", function () {
     var $work = $(this).closest(".work");
     var open = $work.hasClass("work--open");
-    $(".work--open").removeClass("work--open").find(".work__body").stop(true).slideUp(280);
+    $(".work--open").removeClass("work--open").find(".work__body").stop(true).slideUp(280, function () {
+      $(this).find(".work__thumb").removeClass("work__thumb--in");
+    });
     if (!open) {
       $work.addClass("work--open");
-      $work.find(".work__body").stop(true).slideDown(320);
+      var $imgs = $work.find(".work__thumb").removeClass("work__thumb--in").find("img");
+      $imgs.css("transition", "none");
+      if ($imgs[0]) $imgs[0].offsetWidth;
+      $imgs.css("transition", "");
+      $work.find(".work__body").stop(true).slideDown(320, revealThumbs);
       showText($work.find(".work__inner .tx").not(".tx--on"));
+      requestAnimationFrame(revealThumbs);
     }
   });
   $(".work--open .work__body").show();
+  revealThumbs();
+
+  var $modal = $(".modal");
+  var slideCount = 0;
+  var slideIndex = 0;
+  var modalLabels = {
+    harmost: "Harmostの画面",
+    prelude: "プレリュードコラムの画面",
+    belle: "BELLE HOUSINGの画面",
+    packman: "学習問題サイトの画面",
+    dragon: "キャラクター育成の画面",
+    walk: "歩くツール体験の画面"
+  };
+
+  function activeTrack() {
+    return $(".modal__track").not("[hidden]");
+  }
+
+  function showSlide(index) {
+    var $track = activeTrack();
+    slideCount = $track.children().length;
+    slideIndex = (index + slideCount) % slideCount;
+    $track.css("transform", "translateX(" + (-slideIndex * 100) + "%)");
+    $(".modal__count").text(slideIndex + 1 + " / " + slideCount);
+  }
+
+  function openModal(set, index) {
+    $(".modal__track").attr("hidden", "hidden").css("transform", "none");
+    $('.modal__track[data-set="' + set + '"]').removeAttr("hidden");
+    $(".modal__panel").attr("aria-label", modalLabels[set] || "画面");
+    showSlide(index);
+    $modal.removeClass("modal--closing").removeAttr("hidden");
+    $modal[0].offsetWidth;
+    $modal.addClass("modal--open");
+    $body.addClass("page--lock");
+  }
+
+  function closeModal() {
+    if (!$modal.hasClass("modal--open")) return;
+    $modal.removeClass("modal--open").addClass("modal--closing");
+    $body.removeClass("page--lock");
+    setTimeout(function () {
+      if (!$modal.hasClass("modal--open")) {
+        $modal.removeClass("modal--closing").attr("hidden", "hidden");
+      }
+    }, 420);
+  }
+
+  $(".work__thumb").on("click", function () {
+    openModal($(this).data("set") || "harmost", parseInt($(this).data("index"), 10) || 0);
+  });
+  $(".modal__close").on("click", closeModal);
+  $modal.on("click", function (e) {
+    if ($(e.target).closest(".modal__slide img, .modal__nav, .modal__close").length) return;
+    closeModal();
+  });
+  $(".modal__nav--prev").on("click", function () { showSlide(slideIndex - 1); });
+  $(".modal__nav--next").on("click", function () { showSlide(slideIndex + 1); });
+  $(document).on("keydown", function (e) {
+    if (!$modal.hasClass("modal--open")) return;
+    if (e.key === "Escape") closeModal();
+    if (e.key === "ArrowRight") showSlide(slideIndex + 1);
+    if (e.key === "ArrowLeft") showSlide(slideIndex - 1);
+  });
 
   $(".contact__form").on("submit", function (e) {
     e.preventDefault();
@@ -284,6 +371,7 @@ $(function () {
   });
 
   var slashLock = false;
+  var keepSlash = {};
   function hideWrapSlash() {
     if (slashLock) return;
     slashLock = true;
@@ -291,25 +379,38 @@ $(function () {
     $items.removeClass("marquee__item--line-end marquee__item--line-start");
     $items.each(function (i) {
       var $next = $items.eq(i + 1);
-      if (!$next.length || $next.position().top > $(this).position().top + 2) {
-        $(this).addClass("marquee__item--line-end");
-      }
-    });
-    $items.each(function (i) {
-      var $el = $(this);
-      var $next = $items.eq(i + 1);
-      if (!$next.length || !$el.hasClass("marquee__item--line-end")) return;
-      if ($next.position().top <= $el.position().top + 2) $el.removeClass("marquee__item--line-end");
+      var wrapped = !$next.length || $next.position().top > $(this).position().top + 2;
+      if (wrapped && !keepSlash[i]) $(this).addClass("marquee__item--line-end");
     });
     $items.each(function (i) {
       if (i === 0 || $items.eq(i - 1).hasClass("marquee__item--line-end")) {
         $(this).addClass("marquee__item--line-start");
       }
     });
+    $items.each(function (i) {
+      var $next = $items.eq(i + 1);
+      if (!$next.length || !$(this).hasClass("marquee__item--line-end")) return;
+      if ($next.position().top <= $(this).position().top + 2) {
+        keepSlash[i] = true;
+        $(this).removeClass("marquee__item--line-end");
+      }
+    });
+    $items.each(function (i) {
+      if (i === 0) {
+        $(this).addClass("marquee__item--line-start");
+        return;
+      }
+      var $prev = $items.eq(i - 1);
+      if ($(this).position().top > $prev.position().top + 2) $(this).addClass("marquee__item--line-start");
+      else $(this).removeClass("marquee__item--line-start");
+    });
     slashLock = false;
   }
   hideWrapSlash();
-  $(window).on("resize", hideWrapSlash);
+  $(window).on("resize", function () {
+    keepSlash = {};
+    hideWrapSlash();
+  });
   if (window.ResizeObserver && $(".marquee__track")[0]) {
     new ResizeObserver(hideWrapSlash).observe($(".marquee__track")[0]);
   }
